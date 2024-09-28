@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/24 20:47:53 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/09/28 22:24:56 by ribana-b         ###   ########.com       #
+#    Updated: 2024/09/28 23:38:09 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +50,11 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ = $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRC))
 
-CC := clang++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -ggdb
+CXX := clang++
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -ggdb
 
 ifdef WITH_DEBUG
-	CFLAGS += -ggdb -DDEBUG=1
+	CXXFLAGS += -ggdb -DDEBUG=1
 endif
 
 CPPFLAGS := -I $(INCLUDE_DIR)
@@ -79,7 +79,7 @@ all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	$(OBJ_MSG)
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CXX) $(OBJ) -o $(NAME)
 	$(OUTPUT_MSG)
 
 $(OBJ_DIR):
@@ -87,7 +87,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(INCLUDE)
 	$(COMPILE_MSG)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ_DIR)
