@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:54:20 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/09/29 13:52:51 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/10/04 01:11:59 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Fixed::Fixed(const int rawBits)
 
 Fixed::Fixed(const float rawBits)
 {
-	this->rawBits = static_cast<int>(rawBits * (1 << fractionalBits));
+	this->rawBits = rawBits * (1 << fractionalBits);
 }
 
 Fixed	&Fixed::operator=(const Fixed &that)
@@ -60,7 +60,7 @@ int	Fixed::getRawBits(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return (static_cast<float>(rawBits) / (1 << fractionalBits));
+	return (roundf(rawBits) / (1 << fractionalBits));
 }
 
 int	Fixed::toInt(void) const
